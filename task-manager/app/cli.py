@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import shlex
 from pathlib import Path
 from .storage import JSONStore
 from .models import Task, Note
@@ -15,9 +16,10 @@ def _print_tasks(tasks: list[Task]) -> None:
         print(f"- {t.id} | {t.title} | {t.status} | tags:{','.join(t.tags)}")
 
 
-def main(argv: list[str] | None = None) -> int:
+def run_command(argv: list[str], store: JSONStore) -> int:
+    """Execute a single command (argv does not include program name). Returns exit code."""
     parser = argparse.ArgumentParser(prog="taskmgr")
-    parser.add_argument('--data', '-d', help='path to data file', default='~/.taskmgr/data.json')
+    parser.add_argument('--data', '-d', help='path to data file', default=None)
     sub = parser.add_subparsers(dest='cmd')
 
     add = sub.add_parser('add', help='add a task')
@@ -43,9 +45,11 @@ def main(argv: list[str] | None = None) -> int:
     note_add.add_argument('--content', '-c', default='')
     note_add.add_argument('--link-task')
 
-    args = parser.parse_args(argv)
-    data_file = Path(args.data).expanduser()
-    store = JSONStore(data_file)
+    try:
+        args = parser.parse_args(argv)
+    except SystemExit:
+        # argparse used print_help and exit; return error
+        return 2
 
     if args.cmd == 'add':
         t = Task(title=args.title, description=args.desc)
@@ -92,6 +96,43 @@ def main(argv: list[str] | None = None) -> int:
 
     parser.print_help()
     return 1
+
+
+def main(argv: list[str] | None = None) -> int:
+    # If argv is None or empty, enter interactive REPL mode.
+    if argv is None or len(argv) == 0:
+        # allow optional --data via environment or default
+        data_file = Path('~/.taskmgr/data.json').expanduser()
+        store = JSONStore(data_file)
+        print('taskmgr interactive mode. Type "help" for commands, "exit" to quit.')
+        while True:
+            try:
+                line = input('taskmgr> ').strip()
+            except (EOFError, KeyboardInterrupt):
+                print()
+                break
+            if not line:
+                continue
+            if line in ('exit', 'quit'):
+                break
+            if line == 'help':
+                print('Commands: add <title> [--desc <desc>], list [--status <status>], update <id> [--title ...], delete <id>, note add <title> [--content ...] , help, exit')
+                continue
+            try:
+                args_list = shlex.split(line)
+            except ValueError as e:
+                print('Parse error:', e)
+                continue
+            run_command(args_list, store)
+        return 0
+
+    # Non-interactive: allow top-level --data to set store file
+    top = argparse.ArgumentParser(add_help=False)
+    top.add_argument('--data', '-d', help='path to data file', default='~/.taskmgr/data.json')
+    parsed, remaining = top.parse_known_args(argv)
+    data_file = Path(parsed.data).expanduser()
+    store = JSONStore(data_file)
+    return run_command(remaining, store)
 
 
 if __name__ == '__main__':
