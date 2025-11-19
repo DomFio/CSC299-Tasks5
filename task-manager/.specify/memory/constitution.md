@@ -1,50 +1,47 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# Contributing to the Project
 
-## Core Principles
+Thank you for your interest in contributing to this project! We welcome contributions that enhance the quality and clarity of our code, improve user experience, and uphold our established principles. Please follow the guidelines below to ensure a smooth contribution process.
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+## Principles to Follow
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+1. **Code Clarity and Simplicity**
+   - Write code that is easy to read and understand.
+   - Avoid unnecessary complexity; strive for simplicity in design and implementation.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+2. **Code Quality**
+   - Ensure that your code adheres to the project's coding standards.
+   - Conduct thorough code reviews and address any issues before submitting your contribution.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+3. **Testing Standards**
+   - Write unit tests for new features and ensure existing tests pass.
+   - Follow the testing guidelines outlined in the project documentation.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+4. **User Experience Consistency**
+   - Ensure that any changes made to the user interface maintain a consistent experience.
+   - Consider the impact of your changes on the overall user experience.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## How to Contribute
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+1. **Fork the Repository**
+   - Create a personal copy of the repository by forking it.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+2. **Create a Feature Branch**
+   - Use a descriptive name for your branch that reflects the changes you are making.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+3. **Make Your Changes**
+   - Implement your changes while adhering to the principles outlined above.
 
-## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+4. **Write Tests**
+   - Ensure that your changes are covered by tests.
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+5. **Submit a Pull Request**
+   - Once your changes are complete, submit a pull request to the main repository.
+   - Include a clear description of your changes and reference any relevant issues.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+## Code of Conduct
+
+Please adhere to our Code of Conduct in all interactions related to the project. We strive to create a welcoming and inclusive environment for all contributors.
+
+## Questions?
+
+If you have any questions or need clarification on the contribution process, feel free to reach out to the project maintainers. We appreciate your contributions and look forward to collaborating with you!
